@@ -43,8 +43,8 @@ public class CalculatorController {
         return calcService.getAllLogs();
     }
 
-    @GetMapping("/logs/operation")
-    public List<CalculatorLog> getLogsByOperation(@RequestParam String operation) {
+    @GetMapping("/logs/operation/{operation}")
+    public List<CalculatorLog> getLogsByOperation(@PathVariable String operation) {
         return calcService.getLogsByOperation(operation);
     }
 
@@ -52,7 +52,5 @@ public class CalculatorController {
     public CalculatorLog getLogById(@PathVariable int id) {
         return calcService.getLogById(id);
     }
-
-
 
 }

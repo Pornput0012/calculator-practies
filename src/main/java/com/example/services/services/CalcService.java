@@ -24,7 +24,7 @@ public class CalcService {
         modelMapper.map(inputTwoNumberDTO, calculatorLog);
 
         double result = inputTwoNumberDTO.getNumber1() + inputTwoNumberDTO.getNumber2();
-        calculatorLog.setOperation("+");
+        calculatorLog.setOperation("plus");
         calculatorLog.setResult(result);
 
         calculatorRepository.save(calculatorLog);
@@ -37,7 +37,7 @@ public class CalcService {
         modelMapper.map(inputTwoNumberDTO, calculatorLog);
 
         double result = inputTwoNumberDTO.getNumber1() - inputTwoNumberDTO.getNumber2();
-        calculatorLog.setOperation("-");
+        calculatorLog.setOperation("minus");
         calculatorLog.setResult(result);
 
         calculatorRepository.save(calculatorLog);
@@ -50,7 +50,7 @@ public class CalcService {
         modelMapper.map(inputTwoNumberDTO, calculatorLog);
 
         double result = inputTwoNumberDTO.getNumber1() * inputTwoNumberDTO.getNumber2();
-        calculatorLog.setOperation("*");
+        calculatorLog.setOperation("multiply");
         calculatorLog.setResult(result);
 
         calculatorRepository.save(calculatorLog);
@@ -67,7 +67,7 @@ public class CalcService {
         modelMapper.map(inputTwoNumberDTO, calculatorLog);
 
         double result = inputTwoNumberDTO.getNumber1() / inputTwoNumberDTO.getNumber2();
-        calculatorLog.setOperation("/");
+        calculatorLog.setOperation("divide");
         calculatorLog.setResult(result);
 
         calculatorRepository.save(calculatorLog);
@@ -85,6 +85,6 @@ public class CalcService {
     }
 
     public List<CalculatorLog> getLogsByOperation(String operation) {
-        return calculatorRepository.findByOperationLike(operation);
+        return calculatorRepository.findByOperation(operation);
     }
 }
