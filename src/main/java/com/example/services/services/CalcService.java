@@ -85,6 +85,6 @@ public class CalcService {
     }
 
     public List<CalculatorLog> getLogsByOperation(String operation) {
-        return calculatorRepository.findByOperation(operation);
+        return calculatorRepository.findByOperationLike(operation);
     }
 }

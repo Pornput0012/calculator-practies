@@ -10,5 +10,5 @@ import java.util.List;
 
 @RepositoryRestResource(exported = false)
 public interface CalculatorRepository extends JpaRepository<CalculatorLog, Integer> {
-    List<CalculatorLog> findByOperation(String operation);
+    List<CalculatorLog> findByOperationLike(String operation);
 }
