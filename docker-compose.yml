@@ -14,7 +14,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: liquibase       
+      MYSQL_DATABASE: calc
       MYSQL_USER: myuser               
       MYSQL_PASSWORD: mypassword  
       MYSQL_CHARACTER_SET_SERVER: utf8mb4
