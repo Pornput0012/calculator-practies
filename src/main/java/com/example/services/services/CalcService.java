@@ -6,6 +6,8 @@ import com.example.services.repositories.CalculatorRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CalcService {
 
@@ -80,5 +82,9 @@ public class CalcService {
     public CalculatorLog getLogById(int id) {
         return calculatorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Log not found with id: " + id));
+    }
+
+    public List<CalculatorLog> getLogsByOperation(String operation) {
+        return calculatorRepository.findByOperation(operation);
     }
 }

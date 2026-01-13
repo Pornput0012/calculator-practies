@@ -137,5 +137,22 @@ class CalcServiceTests extends Specification {
         result.id == 1
         result.result == 3
     }
+    def "should return calc log when execute get by operation"() {
+        given:
+            CalculatorLog calculatorLog = new CalculatorLog()
+            calculatorLog.setOperation("+")
+            calculatorLog.setNumber1(1.0)
+            calculatorLog.setNumber2(2.0)
+            calculatorLog.setResult(3.0)
+
+        when:
+            def result = calcService.getLogsByOperation("+")
+        then:
+            1 * mockCalcRepository.findByOperation(_) >> [calculatorLog]
+            result[0].number1 == 1.0
+            result[0].number2 == 2.0
+            result[0].result == 3.0
+            result[0].operation == "+"
+    }
 
 }

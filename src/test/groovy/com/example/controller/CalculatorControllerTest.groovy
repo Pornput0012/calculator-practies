@@ -2,6 +2,7 @@ package com.example.controller
 
 import com.example.services.controllers.CalculatorController
 import com.example.services.dtos.InputTwoNumberDTO
+import com.example.services.entities.CalculatorLog
 import com.example.services.services.CalcService
 import spock.lang.Specification
 
@@ -79,6 +80,25 @@ class CalculatorControllerTest extends Specification {
         then:
         1 * calculatorService.multiply(data)
 
+    }
+
+    def 'when get all logs execution then success'(){
+        when:
+        calculatorController.getAllLogs()
+        then:
+        1 * calculatorService.getAllLogs()
+    }
+
+    def 'when get logs by id execution then success'(){
+        given:
+        def calcId = 1
+        def execpted = new CalculatorLog()
+        execpted.setId(1)
+        when:
+            def result= calculatorController.getLogById(calcId)
+        then:
+            1 * calculatorService.getLogById(_) >> execpted
+            result.id == calcId
     }
 
 }
