@@ -1,0 +1,35 @@
+services:
+  backend:
+    build: .
+    container_name: backend
+    ports:
+      - "8081:8080"
+
+    depends_on:
+      mysql_db:
+        condition: service_healthy
+  mysql_db:
+    image: mysql:latest 
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: liquibase       
+      MYSQL_USER: myuser               
+      MYSQL_PASSWORD: mypassword  
+      MYSQL_CHARACTER_SET_SERVER: utf8mb4
+      MYSQL_COLLATION_SERVER: utf8mb4_unicode_ci
+      TZ: Asia/Bangkok   
+    ports:
+      - "3306"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 20s
+      timeout: 30s
+      retries: 3
+      start_period: 10s
+volumes:
+  mysql_data:
